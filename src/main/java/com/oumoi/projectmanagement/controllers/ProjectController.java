@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.text.ParseException;
+import java.util.List;
+
 
 @Controller
 @RequestMapping("/projects")
@@ -28,6 +31,7 @@ public class ProjectController {
         return "projects/project_list";
     }
 
+
     @GetMapping("/create")
     public String createProjectPage(Model model){
         model.addAttribute("project",new Project());
@@ -35,9 +39,10 @@ public class ProjectController {
     }
 
     @PostMapping("/create")
-    public String createProject(@Valid @ModelAttribute("project") Project project, BindingResult result, Model model,
-                                RedirectAttributes redirectAttributes){
+    public String createProject(Project project, BindingResult result, Model model,
+                                RedirectAttributes redirectAttributes) throws ParseException {
         if (result.hasErrors()){
+            System.out.println("Has errors" + result.getAllErrors().toString());
             model.addAttribute("project",project);
             redirectAttributes.addFlashAttribute("error","Failed to create new project");
             return "projects/new_project";

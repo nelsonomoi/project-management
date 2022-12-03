@@ -58,22 +58,15 @@
                                     <thead>
                                         <tr>
                                             <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
                                             <th>Start date</th>
-                                            <th>Salary</th>
+                                            <th>Due date</th>
+                                            <th>Estimated cost</th>
+                                            <th>Stage</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
-                                        </tr>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -88,7 +81,24 @@
     <th:block layout:fragment="script">
         <script>
           $(document).ready(function(){
-               $("#projects-table").DataTable()
+               $("#projects-table").DataTable({
+                    processing: true,
+                    serverSide: false,
+                    ajax:{
+                        url: "/api/v1/projects/list",
+                        dataSrc: ''
+                    },
+                    columns: [
+                        {data: "name"},
+                        {data: "startDate"},
+                        {data: "dueDate"},
+                        {data: "estimatedCost"},
+                        {data: "stage"},
+                        {data: function(d){
+                            return '<a role="button" class="btn btn-info btn-sm" data-project_id="'+d.projectId+'">edit</a>'
+                        }}
+                    ]
+               })
           });
         </script>
     </th:block>

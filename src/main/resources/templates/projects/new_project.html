@@ -31,6 +31,9 @@
                 <div class="card">
                     <div class="card-body">
                         <form th:action="@{/projects/create}" th:object="${project}" method="post">
+                            <ul>
+                                <li class="alert alert-danger" role="alert" th:each="error: ${#fields.errors('project.*')}" th:text="${error}" />
+                            </ul>
                             <div class="row">
                                 <div class="col-xl-6">
                                     <div class="mb-3">
@@ -44,14 +47,14 @@
                                     <!-- Date View -->
                                     <div class="mb-3 position-relative" id="datepicker1">
                                         <label class="form-label">Start Date</label>
-                                        <input type="text" th:field="${project.startDate}" class="form-control" data-provide="datepicker" data-date-container="#datepicker1" data-date-format="dd-mm-yyyy" data-date-autoclose="true">
+                                        <input type="text" th:field="${project.startDate}" class="form-control" data-provide="datepicker" data-date-container="#datepicker1" data-date-format="dd/mm/yyyy" data-date-autoclose="true">
                                         <div class="invalid-feedback" th:if="${#fields.hasErrors('startDate')}" th:errors="${project.startDate}"></div>
                                     </div>
                                 </div>
                                 <div class="col-xl-3">
                                     <div class="mb-3 position-relative" id="datepicker2">
                                         <label class="form-label">Due Date</label>
-                                        <input type="text" th:field="${project.dueDate}" class="form-control" data-provide="datepicker" data-date-container="#datepicker2" data-date-format="dd-mm-yyyy" data-date-autoclose="true">
+                                        <input type="text" th:field="${project.dueDate}" class="form-control" data-provide="datepicker" data-date-container="#datepicker2" data-date-format="dd/mm/yyyy" data-date-autoclose="true">
                                     </div>
                                 </div>
 

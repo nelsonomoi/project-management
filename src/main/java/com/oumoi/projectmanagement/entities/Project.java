@@ -6,8 +6,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -25,9 +27,12 @@ public class Project {
 
     private String description;
 
-    private LocalDate startDate;
 
-    private LocalDate dueDate;
+//    @DateTimeFormat(pattern = "dd/mm/yyyy")
+    private String startDate;
+
+//    @DateTimeFormat(pattern = "dd/mm/yyyy")
+    private String  dueDate;
 
     private Double estimatedCost;
 
