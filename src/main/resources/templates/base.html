@@ -9,6 +9,9 @@
     <meta content="" name="description" />
     <meta content="Java Guru" name="nelson" />
 
+    <!-- Plugin css -->
+    <link rel="stylesheet" th:href="@{/assets/vendor/jquery-toast-plugin/jquery.toast.min.css}">
+
     <!-- Date range picker css -->
     <link rel="stylesheet" th:href="@{/assets/vendor/daterangepicker/daterangepicker.css}">
 
@@ -23,6 +26,9 @@
 
     <!-- Icons css -->
     <link th:href="@{/assets/css/icons.min.css}" rel="stylesheet" type="text/css" />
+
+    <!-- Select2 css -->
+    <link th:href="@{/assets/vendor/select2/css/select2.min.css}" rel="stylesheet" type="text/css" />
 
     <!-- Datatables css -->
     <link th:href="@{/assets/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css}" rel="stylesheet" type="text/css" />
@@ -742,6 +748,10 @@
     <script th:src="@{/assets/vendor/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js}"></script>
     <script th:src="@{/assets/vendor/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js}"></script>
 
+    <script th:src="@{/assets/vendor/select2/js/select2.min.js}"></script>
+
+    <script th:src="@{/assets/vendor/jquery-toast-plugin/jquery.toast.min.js}"></script>
+
     <!-- Dashboard App js -->
 <!--    <script src="assets/js/pages/demo.dashboard.js"></script>-->
 
@@ -769,19 +779,43 @@
         var warning = [[${warning}]]
 
         if(success){
-           toastr.success(success)
+            $.toast({
+                heading: 'Success',
+                text: success,
+                position: 'top-right',
+                stack: false,
+                icon: "success"
+            })
         }
 
         if(error){
-            toastr.error(error)
+            $.toast({
+                heading: 'Error',
+                text: error,
+                position: 'top-right',
+                stack: false,
+                icon: "error"
+            })
         }
 
         if(info){
-            toastr.info(info)
+            $.toast({
+                heading: 'Information',
+                text: info,
+                position: 'top-right',
+                stack: false,
+                icon: "info"
+            })
         }
 
         if(warning){
-            toastr.warning(warning)
+            $.toast({
+                heading: 'Warning',
+                text: warning,
+                position: 'top-right',
+                stack: false,
+                icon: "warning"
+            })
         }
 
         $('.required').append('<span class="text-danger">*</span>')
