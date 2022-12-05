@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{base}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Employee</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a th:href="@{/employees}">Employees</a></li>
+                        <li class="breadcrumb-item active">New Employee</li>
+                    </ol>
+                </div>
+                <h4 class="page-title">New Employee</h4>
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <form th:action="@{/employees/create}" th:object="${employee}" method="post">
+                        <ul>
+                            <li class="alert alert-danger" role="alert" th:each="error: ${#fields.errors('employee.*')}" th:text="${error}" />
+                        </ul>
+                        <div class="row">
+                            <div class="col-xl-4">
+                                <div class="mb-3">
+                                    <label for="firstname" class="form-label">First Name</label>
+                                    <input type="text" id="firstname" th:field="${employee.firstname}" class="form-control">
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('firstname')}" th:errors="${employee.firstname}"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-4">
+                                <div class="mb-3">
+                                    <label for="lastname" class="form-label">First Name</label>
+                                    <input type="text" id="lastname" th:field="${employee.lastname}" class="form-control">
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('lastname')}" th:errors="${employee.lastname}"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-4">
+                                <div class="mb-3">
+                                    <label for="firstname" class="form-label">Email</label>
+                                    <input type="email" id="email" th:field="${employee.email}" class="form-control">
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="${employee.email}"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- end row -->
+
+                        <hr>
+                        <div class="justify-content-end row">
+                            <div class="col-12">
+                                <a role="button" th:href="@{/employees}" class="btn btn-secondary">cancel</a>
+                                <button type="submit" class="btn btn-primary">create</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+        </div> <!-- end col-->
+    </div>
+    <!-- end row-->
+
+</div>
+
+<th:block layout:fragment="script">
+    <script>
+          $(document).ready(function(){
+
+          });
+        </script>
+</th:block>
+
+</body>
+</html>
